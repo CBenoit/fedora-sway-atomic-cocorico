@@ -1,8 +1,6 @@
-# BlueBuild Template &nbsp; [![bluebuild build badge](https://github.com/blue-build/template/actions/workflows/build.yml/badge.svg)](https://github.com/blue-build/template/actions/workflows/build.yml)
+# Fedora Sway Atomic Cocorico
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
-
-After setup, it is recommended you update this README to describe your custom image.
+Sway Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) with Helix & Nushell
 
 ## Installation
 
@@ -29,6 +27,16 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+
+- Run the ujust helpers:
+  ```shell
+  ujust dev-setup       # Create + provision your Toolbox.
+  ujust nu-default      # Switch login shell to Nushell.
+  ujust nu-bootstrap    # Wire Starship + Zoxide into Nushell.
+  ujust wireshark-perms # (Optional) enable non-root packet capture.
+  ```
+
+- Use `toolbox enter dev` for builds.
 
 ## ISO
 

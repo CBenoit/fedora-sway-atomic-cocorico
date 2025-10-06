@@ -1,30 +1,44 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: template
-# description will be included in the image's metadata
-description: This is my personal OS image.
+# Image will be published to ghcr.io/<user>/<name>.
+name: sway-atomic-cocorico
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+# Description will be included in the image's metadata.
+description: "Sway Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) with Helix & Nushell"
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
+# The base image to build on top of (FROM) and the version tag to use.
+base-image: ghcr.io/ublue-os/sway-atomic-main:latest
+image-version: latest
+
+# Module configuration, executed in order you can include multiple instances of the same module.
 modules:
+  # # Drop in small system defaults (land in /usr/etc at runtime).
   - type: files
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
+  # Keep the host small but productive in TTY/Wayland terminals
   - type: dnf
     repos:
       copr:
         - atim/starship
     install:
       packages:
-        - micro
-        - starship
+        - helix            # TUI editor on the host
+        - nu               # Nushell
+        - starship         # prompt
+        - zoxide           # smarter cd
+        - util-linux-user  # provides chsh
+        - git
+        - ripgrep
+        - fd-find
+        - jq
+        - yq
+        - wireshark-cli    # tshark + dumpcap
+        - tcpdump
+        - nmap
+        - foot             # lightweight Wayland terminal
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -34,12 +48,37 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
+      - notify: true # Send notification after install/uninstall is finished (true/false).
         scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
+        # If no repo information is specified, Flathub will be used by default.
+        install: # system flatpaks we want all users to have and not remove.
           - org.mozilla.firefox
           - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
+          - com.visualstudio.code
+          - com.github.tchx84.Flatseal
+          - io.github.flattool.Warehouse
+      - scope: user # Also add Flathub user repo, but no user packages.
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  # Developer fonts
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+        - FiraCode
+        - NerdFontsSymbolsOnly
+
+  # Provide ujust commands for provisioning dev container(s).
+  - type: justfiles
+
+  # - type: chezmoi
+  #   disable-init: true
+  #   all-users: false
+  #   repository: "https://github.com/CBenoit/dotfiles"
+  #   file-conflict-policy: replace
+
+  # (Optional) If you need NVIDIA/other kernel modules later:
+  # - type: akmods
+  #   nvidia-driver: nvidia-open
+  #   install: []
+
+  - type: signing # This sets up the proper policy & signing files for signed images to work fully.
