@@ -25,20 +25,17 @@ modules:
         - atim/starship
     install:
       packages:
-        - helix            # TUI editor on the host.
-        - nu               # Nushell
-        - starship         # Shell prompt.
-        - zoxide           # Smarter cd.
-        - util-linux       # Provides chsh, etc.
+        - helix         # TUI editor on the host
+        - nu            # Nushell
+        - starship      # Shell prompt
+        - zoxide        # Smarter cd
         - git
         - ripgrep
         - fd-find
-        - jq
-        - yq
-        - wireshark-cli    # tshark + dumpcap
+        - wireshark-cli # tshark + dumpcap
         - tcpdump
         - nmap
-        - foot             # Tightweight Wayland terminal.
+        - foot          # Tightweight Wayland terminal.
     remove:
       packages:
         # Removing firefox in favor of the Zen browser flatpak.

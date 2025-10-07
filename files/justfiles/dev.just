@@ -76,15 +76,8 @@ dev-setup: toolbox-create-dev
         # TODO: add nushell and set as default shell.
     '
 
-# Make Nushell your login shell (host). Adds /usr/bin/nu to /etc/shells if needed.
-nu-default:
-    if ! grep -qx "/usr/bin/nu" /etc/shells; then \
-      echo "/usr/bin/nu" | sudo tee -a /etc/shells >/dev/null; \
-    fi
-    sudo chsh -s /usr/bin/nu "${USER}"
-    @echo "Switched ${USER} to Nushell. Log out/in to take effect."
-
 # Bootstrap Nushell config: Starship prompt + Zoxide integration.
+# FIXME: replace with chezmoi dotfiles.
 nu-bootstrap:
     mkdir -p ~/.config/nushell ~/.cache/starship
 
