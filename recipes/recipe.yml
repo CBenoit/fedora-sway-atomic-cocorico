@@ -18,18 +18,18 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  # Keep the host small but productive in TTY/Wayland terminals
+  # Keep the host small but productive in TTY/Wayland terminals.
   - type: dnf
     repos:
       copr:
         - atim/starship
     install:
       packages:
-        - helix            # TUI editor on the host
+        - helix            # TUI editor on the host.
         - nu               # Nushell
-        - starship         # prompt
-        - zoxide           # smarter cd
-        - util-linux-user  # provides chsh
+        - starship         # Shell prompt.
+        - zoxide           # Smarter cd.
+        - util-linux       # Provides chsh, etc.
         - git
         - ripgrep
         - fd-find
@@ -38,7 +38,7 @@ modules:
         - wireshark-cli    # tshark + dumpcap
         - tcpdump
         - nmap
-        - foot             # lightweight Wayland terminal
+        - foot             # Tightweight Wayland terminal.
     remove:
       packages:
         # Removing firefox in favor of the Zen browser flatpak.
@@ -56,6 +56,7 @@ modules:
           - com.visualstudio.code
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
+          - org.wireshark.Wireshark
       - scope: user # Also add Flathub user repo, but no user packages.
 
   # Developer fonts.
