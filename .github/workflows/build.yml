@@ -1,9 +1,10 @@
 name: bluebuild
 on:
   schedule:
-    - cron:
-        "00 06 * * *" # build at 06:00 UTC every day
-        # (20 minutes after last ublue images start building)
+    # Universal Blue builds typically publish around 05:40–06:00 UTC.
+    # To trigger ~40 minutes after, schedule at 06:40 UTC, twice a week (Wed and Fri).
+    - cron: "40 6 * * 3,5"
+
   push:
     paths-ignore: # don't rebuild if only documentation has changed
       - "**.md"
