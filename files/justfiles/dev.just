@@ -103,7 +103,11 @@ nu-bootstrap:
 
     @echo "Nu + Starship + Zoxide configured. Open a new terminal to see it."
 
-# Optional: allow non-root packet capture on host (re-login for group to apply).
+# Allow non-root packet capture on host (re-login for group to apply).
 wireshark-perms:
     sudo usermod -aG wireshark ${USER} || true
+    sudo usermod -aG usbmon ${USER} || true # For USB monitoring. FIXME: Maybe remove? For some reason dumpcap has the group usbmon in my image.
     @echo "Re-login or run: newgrp wireshark"
+
+wireshark-capture-all:
+    tshark -i any -w - | flatpak run org.wireshark.Wireshark -k -i -

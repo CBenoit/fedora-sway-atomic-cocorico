@@ -53,7 +53,7 @@ modules:
           - com.visualstudio.code
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
-          - org.wireshark.Wireshark
+          - org.wireshark.Wireshark # The flatpak itself does not support capture, but it’s possible to pipe tshark. 
       - scope: user # Also add Flathub user repo, but no user packages.
 
   # Developer fonts.
