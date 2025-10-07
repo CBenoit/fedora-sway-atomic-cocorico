@@ -7,6 +7,7 @@ dev:
 toolbox-create-dev:
     toolbox create --container dev --image registry.fedoraproject.org/fedora-toolbox:$(rpm -E %fedora) 2>/dev/null || true
 
+# QUESTION: Maybe using an image-level just job is not the best approach? I also have my dotfiles.
 # Provision the dev toolbox with compilers, SDKs, and headers.
 dev-setup: toolbox-create-dev
     #!/usr/bin/env bash
@@ -18,8 +19,8 @@ dev-setup: toolbox-create-dev
         sudo dnf -y upgrade
 
         # Core build tools.
-        sudo dnf -y groupinstall development-tools
-        sudo dnf -y groupinstall c-development
+        sudo dnf -y group install development-tools
+        sudo dnf -y group install c-development
 
         # Compilers & build systems.
         sudo dnf -y install \
