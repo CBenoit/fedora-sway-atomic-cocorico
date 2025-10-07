@@ -2,8 +2,13 @@
 dev:
     toolbox enter dev
 
+# Create a Fedora Toolbox that matches the host release.
+# (idempotent: safe to re-run)
+toolbox-create-dev:
+    toolbox create --container dev --image registry.fedoraproject.org/fedora-toolbox:$(rpm -E %fedora) 2>/dev/null || true
+
 # Provision the dev toolbox with compilers, SDKs, and headers.
-dev-setup: toolbox-create
+dev-setup: toolbox-create-dev
     #!/usr/bin/env bash
     set -euo pipefail
 
