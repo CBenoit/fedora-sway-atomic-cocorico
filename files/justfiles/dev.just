@@ -2,8 +2,7 @@
 dev:
     toolbox enter dev
 
-# Create a Fedora Toolbox that matches the host release.
-# (idempotent: safe to re-run)
+# Create a Fedora Toolbox that matches the host release (idempotent: safe to re-run)
 toolbox-create-dev:
     toolbox create --container dev --image registry.fedoraproject.org/fedora-toolbox:$(rpm -E %fedora) 2>/dev/null || true
 
