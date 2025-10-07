@@ -23,7 +23,7 @@ dev-setup: toolbox-create-dev
 
         # Compilers & build systems.
         sudo dnf -y install \
-            gcc gcc-c++ clang clang-tools-extra cmake ninja-build gdb pkgconfig \
+            gcc gcc-c++ clang clang-tools-extra mold cmake ninja-build gdb pkgconfig \
             protobuf-compiler openssl-devel zlib-devel bzip2-devel xz-devel \
             jq yq git ripgrep fd-find
 

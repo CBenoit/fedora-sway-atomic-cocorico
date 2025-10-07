@@ -67,11 +67,11 @@ modules:
   # Provide ujust commands for provisioning dev container(s).
   - type: justfiles
 
-  # - type: chezmoi
-  #   disable-init: true
-  #   all-users: false
-  #   repository: "https://github.com/CBenoit/dotfiles"
-  #   file-conflict-policy: replace
+  - type: chezmoi
+    disable-init: true
+    all-users: false
+    repository: "https://github.com/CBenoit/dotfiles"
+    file-conflict-policy: skip
 
   # (Optional) If you need NVIDIA/other kernel modules later:
   # - type: akmods
