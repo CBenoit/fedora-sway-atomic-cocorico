@@ -14,7 +14,10 @@ dev:
 
 # Provision the dev toolbox with compilers, SDKs, and headers.
 dev-setup: toolbox-create
-    toolbox run --container dev -- sh -lc '
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    toolbox run --container dev -- bash -lc '
       set -euxo pipefail
 
       sudo dnf -y upgrade
@@ -39,8 +42,8 @@ dev-setup: toolbox-create
       rustup default stable
       rustup component add rust-analyzer
 
-      # .NET SDK (Fedora packages track current LTS/current; adjust as needed).
-      sudo dnf -y install dotnet-sdk-9.0
+      # .NET SDK (prefer 9; fall back to 8 if not available).
+      sudo dnf -y install dotnet-sdk-9.0 || sudo dnf -y install dotnet-sdk-8.0
 
       # Node + package managers (adjust if you prefer fnm/volta).
       sudo dnf -y install nodejs npm

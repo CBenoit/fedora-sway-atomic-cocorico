@@ -41,25 +41,24 @@ modules:
         - foot             # lightweight Wayland terminal
     remove:
       packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+        # Removing firefox in favor of the Zen browser flatpak.
+        - firefox # "firefox" is the main package.
+        - firefox-langpacks # Also remove firefox dependency (not required for all packages, this is a special case).
 
   - type: default-flatpaks
+    # If no repo information is specified, Flathub will be used by default.
     configurations:
       - notify: true # Send notification after install/uninstall is finished (true/false).
         scope: system
-        # If no repo information is specified, Flathub will be used by default.
-        install: # system flatpaks we want all users to have and not remove.
-          - org.mozilla.firefox
+        install: # System flatpaks we want all users to have and not remove.
+          - app.zen_browser.zen
           - org.gnome.Loupe
           - com.visualstudio.code
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
       - scope: user # Also add Flathub user repo, but no user packages.
 
-  # Developer fonts
+  # Developer fonts.
   - type: fonts
     fonts:
       nerd-fonts:
