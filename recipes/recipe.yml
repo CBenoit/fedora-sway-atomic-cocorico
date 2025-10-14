@@ -18,6 +18,9 @@ stages:
     from: ghcr.io/ublue-os/base-main:42
     modules:
       - type: dnf
+        repos:
+          copr:
+            - atim/starship
         install:
           packages:
             # Build tools.

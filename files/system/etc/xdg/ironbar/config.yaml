@@ -25,6 +25,7 @@ start:
   # current percentage.  Users can scroll on the module to adjust
   # volume.  Clicking will open anyrun to choose a different
   # profile (optional behaviour can be defined in a script).
+  # FIXME: Is the bit about anyrun hallucinated?
   - type: volume
     format: "{icon} {percentage}%"
 
