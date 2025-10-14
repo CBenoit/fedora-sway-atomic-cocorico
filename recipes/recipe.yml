@@ -11,6 +11,37 @@ description: "Niri Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) wi
 base-image: ghcr.io/ublue-os/base-main
 image-version: "42"
 
+stages:
+  - name: build-ironbar
+    # Use Fedora 42 image to ensure we link against the correct libraries versions and ABIs (important for GTK apps).
+    # Build on Fedora, run on Fedora.
+    from: ghcr.io/ublue-os/base-main:42
+    modules:
+      - type: dnf
+        install:
+          packages:
+            # Build tools.
+            - rust
+            - cargo
+            - gcc
+
+            # ironbar build deps.
+            - gtk4-devel
+            - gtk4-layer-shell-devel
+            - dbus-devel
+            - pkgconf-pkg-config
+            - openssl-devel
+            - pulseaudio-libs-devel
+            - libinput-devel
+            - luajit-devel
+            - lua-lgi
+      - type: script
+        snippets:
+          # Build straight from upstream from crates.io.
+          - cargo install --locked --git https://github.com/JakeStanger/ironbar --root /out
+          # Probably not required, but strip the debug symbols.
+          - strip /out/bin/ironbar || true
+
 # The module configuration describes what is done to the base image.
 # Modules are executed in order.
 modules:
@@ -19,6 +50,12 @@ modules:
     files:
       - source: system
         destination: / # Copies files/system/* (* means everything inside it) into image's root folder /.
+
+  # Retrieve the ironbar binary from the associated build stage.
+  - type: copy
+    from-stage: build-ironbar
+    source: /out/bin/ironbar
+    dest: /usr/bin/
 
   # Install packages and remove unwanted ones via DNF.
   - type: dnf
@@ -38,14 +75,22 @@ modules:
         - wireshark-cli   # tshark + dumpcap
         - tcpdump
         - nmap
-        - foot            # Lightweight Wayland terminal
 
-        # Wayland compositor & bar.
-        - niri            # Scrollable tiling compositor
-        - ironbar         # Minimal status bar
+        # Lightweight Wayland terminal.
+        - foot
+
+        # Scrollable tiling wayland compositor.
+        - niri
 
         # Application launcher.
-        - anyrun          # Launcher front‑end
+        - fuzzel
+
+        # Login manager.
+        - greetd
+        - gtkgreetd
+
+        # Wallpaper setter.
+        - swaybg
 
         # Input method framework (IME) and addons.
         - fcitx5
@@ -53,10 +98,13 @@ modules:
         - fcitx5-mozc     # Japanese input engine for Mozc
         - fcitx5-configtool
 
+        # ironbar runtime libs
+        - gtk4
+        - gtk4-layer-shell
+
         # Utilities for bar modules.
         - playerctl       # MPRIS control for music module
         - wl-clipboard    # Clipboard utility used by some ironbar modules
-        - wbg             # Static wallpaper setter
 
         # Audio stack (PipeWire and its session manager) for volume control.
         - pipewire
@@ -66,12 +114,6 @@ modules:
         # Remove Firefox in favour of the Zen browser flatpak.
         - firefox
         - firefox-langpacks
-
-        # Explicitly remove sway and waybar if pulled in via dependencies.
-        # FIXME: Probably not included in the base image. Check that.
-        - sway
-        - sway-devel
-        - waybar
 
   # Default flatpaks for a minimal but usable desktop.
   # Zen Browser replaces Firefox.

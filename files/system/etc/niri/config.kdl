@@ -40,7 +40,7 @@ binds {
 
     // Spawn terminal and launcher
     "super+Return" "spawn foot"
-    "super+Space"  "spawn anyrun"
+    "super+Space"  "spawn fuzzel --show drun"
 
     // Close focused window
     "super+Shift+Q" "close-focused-window"
