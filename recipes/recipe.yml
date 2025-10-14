@@ -43,7 +43,7 @@ stages:
           # Build straight from crates.io.
           - cargo install --locked ironbar --root /out
           # Probably not required, but strip the debug symbols.
-          - strip /out/bin/ironbar || true
+          - strip /out/bin/ironbar
 
 # The module configuration describes what is done to the base image.
 # Modules are executed in order.
@@ -92,6 +92,9 @@ modules:
 
         # Wallpaper setter.
         - swaybg
+
+        # Screen locker.
+        - swaylock
 
         # Screen share / file pickers can be flaky without a portal backend.
         # Minimal & DE-agnostic:

@@ -270,7 +270,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Mod+I hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+I hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; } // FIXME: Is it necessary to use --show drun?
     Mod+asterisk hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -297,7 +297,7 @@ binds {
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
-    Mod+minus repeat=false { toggle-overview; }
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Shift+B repeat=false { close-window; }
 
