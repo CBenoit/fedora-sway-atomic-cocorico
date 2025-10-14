@@ -37,8 +37,8 @@ stages:
             - lua-lgi
       - type: script
         snippets:
-          # Build straight from upstream from crates.io.
-          - cargo install --locked --git https://github.com/JakeStanger/ironbar --root /out
+          # Build straight from crates.io.
+          - cargo install --locked ironbar --root /out
           # Probably not required, but strip the debug symbols.
           - strip /out/bin/ironbar || true
 
@@ -59,9 +59,6 @@ modules:
 
   # Install packages and remove unwanted ones via DNF.
   - type: dnf
-    repos:
-      copr:
-        - atim/starship
     install:
       packages:
         # Common CLI utilities.
@@ -93,15 +90,22 @@ modules:
         # Wallpaper setter.
         - swaybg
 
+        # Screen share / file pickers can be flaky without a portal backend.
+        # Minimal & DE-agnostic:
+        - xdg-desktop-portal
+        - xdg-desktop-portal-gtk
+
         # Input method framework (IME) and addons.
         - fcitx5
         - fcitx5-gtk
+        - fcitx5-qt
         - fcitx5-mozc     # Japanese input engine for Mozc
         - fcitx5-configtool
 
         # ironbar runtime libs
         - gtk4
         - gtk4-layer-shell
+        - nm-connection-editor
 
         # Utilities for bar modules.
         - playerctl       # MPRIS control for music module
@@ -160,6 +164,10 @@ modules:
   # - type: akmods
   #   nvidia-driver: nvidia-open
   #   install: []
+
+  - type: systemd
+    enabled:
+      - greetd.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
   - type: signing
