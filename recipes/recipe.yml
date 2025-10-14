@@ -165,9 +165,11 @@ modules:
   #   nvidia-driver: nvidia-open
   #   install: []
 
-  - type: systemd
-    enabled:
-      - greetd.service
+  # This is already covered by the greetd preset found in system-preset, I think?
+  # - type: systemd
+  #   system:
+  #     enabled:
+  #       - greetd.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
   - type: signing
