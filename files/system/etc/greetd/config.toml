@@ -1,0 +1,8 @@
+# Minimal greetd config using gtkgreet under cage
+[terminal]
+vt = "next"
+
+[default_session]
+# -s = single client, exit cage when gtkgreet exits
+command = "cage -s -- gtkgreet"
+user = "greetd"

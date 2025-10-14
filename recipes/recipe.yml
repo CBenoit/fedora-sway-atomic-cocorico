@@ -87,7 +87,8 @@ modules:
 
         # Login manager.
         - greetd
-        - gtkgreetd
+        - gtkgreet
+        - cage
 
         # Wallpaper setter.
         - swaybg
