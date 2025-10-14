@@ -1,0 +1,107 @@
+// niri configuration file
+//
+// This config follows niri's KDL syntax.  It aims to provide a
+// comfortable experience for a Bépo keyboard user while preserving
+// familiar i3 workflows where possible.  The mod key is the
+// Super key.  Workspaces are numbered globally.  Volume keys and
+// other media keys function via PipeWire.  The built‑in prefer-no-csd
+// flag requests server-side decorations where available.
+
+// Input configuration
+input {
+    keyboard {
+        // Use Bépo (French) as primary layout and Japanese as a
+        // secondary option.  You can switch to Japanese via fcitx5
+        // using Ctrl+Space.
+        xkb-layout "fr(bepo),jp"
+        xkb-options "ctrl:nocaps"
+    }
+    touchpad {
+        tap-to-click
+        natural-scroll
+        // Enable three- and four-finger swipe gestures for
+        // workspace navigation.  These are handled by niri.
+        gesture-swipe-3
+        gesture-swipe-4
+    }
+}
+
+// Request server-side decorations wherever possible.
+misc {
+    prefer-no-csd
+}
+
+// Key bindings.  Commands use niri's built‑in verbs.  Many of these
+// mirror i3 defaults: Super+Return opens a terminal, Super+Q closes
+// the focused window, Super+Shift+<number> moves the window to a
+// workspace.
+binds {
+    mod "super"
+
+    // Spawn terminal and launcher
+    "super+Return" "spawn foot"
+    "super+Space"  "spawn anyrun"
+
+    // Close focused window
+    "super+Shift+Q" "close-focused-window"
+
+    // Workspace navigation (global 1–10)
+    "super+1" "workspace 1"
+    "super+2" "workspace 2"
+    "super+3" "workspace 3"
+    "super+4" "workspace 4"
+    "super+5" "workspace 5"
+    "super+6" "workspace 6"
+    "super+7" "workspace 7"
+    "super+8" "workspace 8"
+    "super+9" "workspace 9"
+    "super+0" "workspace 10"
+
+    // Move focused window to a workspace
+    "super+Shift+1" "move-to-workspace 1"
+    "super+Shift+2" "move-to-workspace 2"
+    "super+Shift+3" "move-to-workspace 3"
+    "super+Shift+4" "move-to-workspace 4"
+    "super+Shift+5" "move-to-workspace 5"
+    "super+Shift+6" "move-to-workspace 6"
+    "super+Shift+7" "move-to-workspace 7"
+    "super+Shift+8" "move-to-workspace 8"
+    "super+Shift+9" "move-to-workspace 9"
+    "super+Shift+0" "move-to-workspace 10"
+
+    // Focus movement using Bépo physical positions.  h/j/k/l become
+    // t/s/r/c on Bépo, so we map them accordingly.
+    "super+t"     "focus left"
+    "super+s"     "focus down"
+    "super+r"     "focus up"
+    "super+c"     "focus right"
+
+    "super+Shift+t"     "move left"
+    "super+Shift+s"     "move down"
+    "super+Shift+r"     "move up"
+    "super+Shift+c"     "move right"
+
+    // Resize windows (use Ctrl with mod).
+    "super+Ctrl+t"     "resize left"
+    "super+Ctrl+s"     "resize down"
+    "super+Ctrl+r"     "resize up"
+    "super+Ctrl+c"     "resize right"
+
+    // Restart and quit session
+    "super+Shift+R" "reload-config"
+    "super+Shift+E" "exit"
+}
+
+// Layout configuration.  Use default scrollable tiling layout.
+layout {
+    // No custom changes; niri's default scrollable tiling is used.
+}
+
+// Gestures configuration.  Map three‑finger swipes to previous/next
+// workspaces.  Four‑finger swipes can also be used to cycle workspaces.
+gestures {
+    swipe-3-left  "workspace prev"
+    swipe-3-right "workspace next"
+    swipe-4-left  "workspace prev"
+    swipe-4-right "workspace next"
+}

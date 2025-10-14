@@ -4,59 +4,96 @@
 name: atomic-kokoriko
 
 # Description will be included in the image's metadata.
-description: "Sway Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) with Helix & Nushell"
+description: "Niri Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) with Helix & Nushell"
 
 # The base image to build on top of (FROM) and the version tag to use.
-base-image: ghcr.io/ublue-os/sway-atomic-main
-image-version: latest # Or pin "42" for Fedora 42.
+# Use the smallest universal blue base rather than the sway‑flavoured variant.
+base-image: ghcr.io/ublue-os/base-main
+image-version: "42"
 
-# Module configuration, executed in order you can include multiple instances of the same module.
+# The module configuration describes what is done to the base image.
+# Modules are executed in order.
 modules:
-  # # Drop in small system defaults (land in /usr/etc at runtime).
+  # Drop in small system defaults (land in /usr/etc at runtime).
   - type: files
     files:
       - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+        destination: / # Copies files/system/* (* means everything inside it) into image's root folder /.
 
-  # Keep the host small but productive in TTY/Wayland terminals.
+  # Install packages and remove unwanted ones via DNF.
   - type: dnf
     repos:
       copr:
         - atim/starship
     install:
       packages:
-        - helix         # TUI editor on the host
-        - nu            # Nushell
-        - starship      # Shell prompt
-        - zoxide        # Smarter cd
+        # Common CLI utilities.
+        - helix           # TUI editor on the host
+        - nu              # Nushell
+        - starship        # Shell prompt
+        - zoxide          # Smarter cd
         - git
         - ripgrep
         - fd-find
-        - wireshark-cli # tshark + dumpcap
+        - wireshark-cli   # tshark + dumpcap
         - tcpdump
         - nmap
-        - foot          # Tightweight Wayland terminal.
+        - foot            # Lightweight Wayland terminal
+
+        # Wayland compositor & bar.
+        - niri            # Scrollable tiling compositor
+        - ironbar         # Minimal status bar
+
+        # Application launcher.
+        - anyrun          # Launcher front‑end
+
+        # Input method framework (IME) and addons.
+        - fcitx5
+        - fcitx5-gtk
+        - fcitx5-mozc     # Japanese input engine for Mozc
+        - fcitx5-configtool
+
+        # Utilities for bar modules.
+        - playerctl       # MPRIS control for music module
+        - wl-clipboard    # Clipboard utility used by some ironbar modules
+        - wbg             # Static wallpaper setter
+
+        # Audio stack (PipeWire and its session manager) for volume control.
+        - pipewire
+        - wireplumber
     remove:
       packages:
-        # Removing firefox in favor of the Zen browser flatpak.
-        - firefox # "firefox" is the main package.
-        - firefox-langpacks # Also remove firefox dependency (not required for all packages, this is a special case).
+        # Remove Firefox in favour of the Zen browser flatpak.
+        - firefox
+        - firefox-langpacks
 
+        # Explicitly remove sway and waybar if pulled in via dependencies.
+        # FIXME: Probably not included in the base image. Check that.
+        - sway
+        - sway-devel
+        - waybar
+
+  # Default flatpaks for a minimal but usable desktop.
+  # Zen Browser replaces Firefox.
   - type: default-flatpaks
-    # If no repo information is specified, Flathub will be used by default.
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false).
+      # System flatpaks we want all users to have and not remove.
+      - notify: true # Send notification after install/uninstall is finished.
         scope: system
-        install: # System flatpaks we want all users to have and not remove.
+        install:
           - app.zen_browser.zen
           - org.gnome.Loupe
           - com.visualstudio.code
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
           - org.wireshark.Wireshark # The flatpak itself does not support capture, but it’s possible to pipe tshark. 
-      - scope: user # Also add Flathub user repo, but no user packages.
+
+      # Also add Flathub user repo, but no user packages.
+      - scope: user
 
   # Developer fonts.
+  # JetBrains Mono Nerd Font provides the glyphs used by ironbar and the terminal.
+  # NerdFontsSymbolsOnly ensures extra icons are available without pulling in entire fonts.
   - type: fonts
     fonts:
       nerd-fonts:
@@ -67,6 +104,9 @@ modules:
   # Provide ujust commands for provisioning dev container(s).
   - type: justfiles
 
+  # Use Chezmoi to layer in dotfiles.
+  # Disable init to avoid interfering with host files during build.
+  # Dotfiles live at the referenced repository.
   - type: chezmoi
     disable-init: true
     all-users: false
@@ -78,4 +118,5 @@ modules:
   #   nvidia-driver: nvidia-open
   #   install: []
 
-  - type: signing # This sets up the proper policy & signing files for signed images to work fully.
+  # This sets up the proper policy & signing files for signed images to work fully.
+  - type: signing

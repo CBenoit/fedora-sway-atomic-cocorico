@@ -1,0 +1,69 @@
+# Ironbar configuration
+#
+# This YAML config defines a single bar anchored to the top edge of
+# the primary output.  It places modules on the left (start), center
+# and right (end) sections according to the user's requirements.
+
+anchor_to_edges: true
+position: top
+
+# Only show the bar on the primary monitor.  The primary output is
+# selected automatically by ironbar when all_monitors is false.
+all_monitors: false
+
+start:
+  # Music / sound player control.  Use MPRIS via playerctl to
+  # control any active media player.  The truncate section limits the
+  # displayed title length.
+  - type: music
+    player_type: mpris
+    truncate:
+      mode: end
+      max_length: 40
+
+  # Volume control via PipeWire / WirePlumber.  Show an icon and the
+  # current percentage.  Users can scroll on the module to adjust
+  # volume.  Clicking will open anyrun to choose a different
+  # profile (optional behaviour can be defined in a script).
+  - type: volume
+    format: "{icon} {percentage}%"
+
+  # Network manager status.  Clicking the module launches the
+  # connection editor.  The nmcli backend is used internally by
+  # ironbar.
+  - type: network
+    on_click: "!nm-connection-editor"
+
+  # CPU and memory usage.  Sample CPU and memory every second and
+  # display a compact representation.  Additional system metrics are
+  # omitted to keep the bar uncluttered.
+  - type: sys_info
+    format:
+      - "CPU {cpu_percent}% · RAM {memory_used:.1f}G/{memory_total:.1f}G"
+    interval:
+      cpu: 1
+      memory: 1
+
+  # Battery status.  Displays a simple icon and percentage.  This
+  # module automatically hides itself when no battery is present.
+  - type: battery
+
+center:
+  # Focused window title in the centre.  Truncate long titles.
+  - type: focused
+    truncate:
+      mode: end
+      max_length: 60
+
+end:
+  # Date and time in ISO format (YYYY/MM/DD HH:mm).  The locale is
+  # respected via the system locale.  To change the format or locale
+  # explicitly, adjust the format string.
+  - type: clock
+    format: "%Y/%m/%d %H:%M"
+
+  # System tray.  Hide when empty and collapse into a single icon
+  # when space is constrained.  This module shows SNI icons.
+  - type: tray
+    hide_when_empty: true
+    collapse_when_hidden: true
