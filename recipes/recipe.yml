@@ -35,10 +35,11 @@ stages:
             - libinput-devel
             - luajit-devel
             - lua-lgi
+            - atk-devel
       - type: script
         snippets:
           # Build straight from crates.io.
-          - cargo install --locked ironbar --root /out
+          - cargo install --locked ironbar --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri
           # Probably not required, but strip the debug symbols.
           - strip /out/bin/ironbar
 
@@ -112,7 +113,7 @@ modules:
         # ironbar runtime libs
         - gtk4
         - gtk4-layer-shell
-        - nm-connection-editor
+        - nm-connection-editor # TODO: learn more about this.
 
         # Utilities for bar modules.
         - playerctl       # MPRIS control for music module
