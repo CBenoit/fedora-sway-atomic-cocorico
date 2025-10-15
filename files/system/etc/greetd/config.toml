@@ -1,8 +1,8 @@
-# Minimal greetd config using gtkgreet under cage
 [terminal]
 vt = "next"
 
 [default_session]
-# -s = single client, exit cage when gtkgreet exits
-command = "cage -s -- gtkgreet"
+# -s = single client, exit cage when gtkgreet exits.
+# dbus-run-session in front of cage+gtkgreet because it typically works better.
+command = "dbus-run-session -- cage -s -- gtkgreet"
 user = "greetd"

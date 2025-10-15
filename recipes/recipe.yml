@@ -62,6 +62,7 @@ modules:
     repos:
       copr:
         - atim/starship
+
     install:
       packages:
         # Common CLI utilities.
@@ -120,6 +121,11 @@ modules:
         # Audio stack (PipeWire and its session manager) for volume control.
         - pipewire
         - wireplumber
+
+        # GPU/DRM/Vulkan drivers (ensure EGL features are present)
+        - mesa-dri-drivers
+        - mesa-vulkan-drivers
+
     remove:
       packages:
         # Remove Firefox in favour of the Zen browser flatpak.
