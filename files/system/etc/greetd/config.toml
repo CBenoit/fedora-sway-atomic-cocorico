@@ -3,6 +3,5 @@ vt = "next"
 
 [default_session]
 # -s = single client, exit cage when gtkgreet exits.
-# dbus-run-session in front of cage+gtkgreet because it typically works better.
-command = "dbus-run-session -- cage -s -- gtkgreet"
+command = "cage -s -- gtkgreet"
 user = "greetd"
