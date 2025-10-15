@@ -39,7 +39,8 @@ stages:
       - type: script
         snippets:
           # Build straight from crates.io.
-          - cargo install --locked ironbar --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri
+          # - cargo install --locked ironbar --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri
+          - cargo install --locked ironbar --git https://github.com/JakeStanger/ironbar --rev 95612269b73cf9e2e2dd849d1667258ee1ee0d8d --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri
           # Probably not required, but strip the debug symbols.
           - strip /out/bin/ironbar
 
