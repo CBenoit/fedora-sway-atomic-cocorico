@@ -53,8 +53,8 @@ modules:
 
   # Retrieve the ironbar binary from the associated build stage.
   - type: copy
-    from-stage: build-ironbar
-    source: /out/bin/ironbar
+    from: build-ironbar
+    src: /out/bin/ironbar
     dest: /usr/bin/
 
   # Install packages and remove unwanted ones via DNF.
