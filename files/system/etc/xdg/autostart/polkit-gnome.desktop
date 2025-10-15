@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=PolicyKit Authentication Agent
+Exec=/usr/libexec/polkit-gnome-authentication-agent-1
+OnlyShowIn=Niri;X-Cinnamon;LXQt;XFCE;MATE;openbox;
+X-GNOME-Autostart-enabled=true

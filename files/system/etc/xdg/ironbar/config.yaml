@@ -2,32 +2,15 @@ anchor_to_edges: true
 position: top
 
 start:
-  # Music / sound player control.
-  # Use MPRIS via playerctl to control any active media player.
-  # The truncate section limits the displayed title length.
-  - type: music
-    player_type: mpris
-    truncate:
-      mode: end
-      max_length: 40
-
   - type: "volume"
     format: "{icon} {percentage}%"
 
   - type: sys_info
     format:
       -  {cpu_percent}%  {memory_used}/{memory_total}G
-      - 󰋊 {disk_used#T@/:.1} / {disk_total#T@/:.1} TB ({disk_percent@/}%) | {disk_read} / {disk_write} MB/s
-      - 󰓢 {net_down@enp39s0} / {net_up@enp39s0} Mbps
-      - 󰥔 {uptime}
     interval:
       memory: 30
       cpu: 5
-      disks: 300
-      networks: 3
-
-  # Battery status. Automatically hides itself when no battery is present.
-  - type: battery
 
 center:
   - type: focused
@@ -56,5 +39,8 @@ end:
   - type: tray
     hide_when_empty: true
     collapse_when_hidden: true
+
+  # Battery status. Automatically hides itself when no battery is present.
+  - type: battery
 
   - type: notifications

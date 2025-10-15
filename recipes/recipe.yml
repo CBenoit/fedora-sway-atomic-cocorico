@@ -115,7 +115,6 @@ modules:
         - gtk4
         - gtk4-layer-shell
         - nm-connection-editor # TODO: learn more about this.
-        - bluez # Bluetooth support.
 
         # Utilities for bar modules.
         - playerctl       # MPRIS control for music module
@@ -128,6 +127,12 @@ modules:
         # GPU/DRM/Vulkan drivers (ensure EGL features are present)
         - mesa-dri-drivers
         - mesa-vulkan-drivers
+
+        # Bluetooth stack + UI
+        - bluez              # bluetoothd, bluetoothctl
+        # - bluez-obexd        # OBEX file transfer (used by Blueman)
+        # - blueman            # tray applet & pairing UI
+        - polkit-gnome       # polkit agent for pairing / NM actions
 
     remove:
       packages:
@@ -180,11 +185,10 @@ modules:
   #   nvidia-driver: nvidia-open
   #   install: []
 
-  # This is already covered by the greetd preset found in system-preset, I think?
-  # - type: systemd
-  #   system:
-  #     enabled:
-  #       - greetd.service
+  - type: systemd
+    system:
+      enabled:
+        - bluetooth.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
   - type: signing
