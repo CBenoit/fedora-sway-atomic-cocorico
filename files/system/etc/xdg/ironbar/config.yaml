@@ -56,3 +56,5 @@ end:
   - type: tray
     hide_when_empty: true
     collapse_when_hidden: true
+
+  - type: notifications
