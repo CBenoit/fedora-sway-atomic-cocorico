@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Ironbar
 Comment=Wayland bar written in Rust
-Exec=env IRONBAR_CONFIG=/etc/xdg/ironbar/ironbar.yaml ironbar
+Exec=env IRONBAR_CONFIG=/etc/xdg/ironbar/config.yaml ironbar
 Type=Application
 X-GNOME-Autostart-enabled=true
 OnlyShowIn=GNOME;Unity;XFCE;LXQt;Niri;
