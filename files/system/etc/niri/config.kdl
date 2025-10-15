@@ -443,13 +443,13 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+XF86Launch9  { consume-or-expel-window-left; }
-    Mod+ccedilla { consume-or-expel-window-right; }
+    Mod+G  { consume-or-expel-window-left; }
+    Mod+H { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Shift+XF86Launch9  { consume-window-into-column; }
+    Mod+Shift+G  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Shift+ccedilla { expel-window-from-column; }
+    Mod+Shift+H { expel-window-from-column; }
 
     Mod+P { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
@@ -480,8 +480,8 @@ binds {
     Mod+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Z     { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Equal { set-window-height "-10%"; }
+    Mod+Shift+Z     { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+Shift+Space { toggle-window-floating; }
