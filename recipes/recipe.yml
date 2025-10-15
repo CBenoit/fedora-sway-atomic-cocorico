@@ -115,6 +115,7 @@ modules:
         - gtk4
         - gtk4-layer-shell
         - nm-connection-editor # TODO: learn more about this.
+        - bluez # Bluetooth support.
 
         # Utilities for bar modules.
         - playerctl       # MPRIS control for music module

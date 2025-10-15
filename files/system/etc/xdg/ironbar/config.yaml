@@ -16,7 +16,7 @@ start:
 
   - type: sys_info
     format:
-      -  {cpu_percent}%  {memory_used:.1f}G/{memory_total:.1f}G
+      -  {cpu_percent}%  {memory_used}/{memory_total}G
       - 󰋊 {disk_used#T@/:.1} / {disk_total#T@/:.1} TB ({disk_percent@/}%) | {disk_read} / {disk_write} MB/s
       - 󰓢 {net_down@enp39s0} / {net_up@enp39s0} Mbps
       - 󰥔 {uptime}
