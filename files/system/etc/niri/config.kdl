@@ -277,7 +277,7 @@ binds {
     // Handy terminal.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     // Handy file explorer.
-    Mod+Shift+Return hotkey-overlay-title="Open File Explorer: PCManFM" { spawn "pcmanfm"; }
+    Mod+Shift+Return hotkey-overlay-title="Open File Explorer: Nautilus" { spawn "nautilus"; }
 
     // Application launcher.
     // The "--show drun" of fuzzel shows a few extra entries (e.g.: "Zen Browser – Open the Profile Manager")

@@ -106,8 +106,16 @@ modules:
         # Ensure we have the en_DK locale available.
         - glibc-langpack-en
 
-        # File Explorer
-        - pcmanfm
+        # Enable file pickers (portals)
+        - xdg-desktop-portal-gtk # "Default fallback portal", implementing most of the basic functionnality.
+        - xdg-desktop-portal-gnome # Required for niri screencasting support.
+        - gnome-keyring # Implements the Secret portal, required for certain apps to work.
+
+        # Notifications.
+        - mako
+
+        # File Explorer.
+        - nautilus
         # TODO: Consider yazi as a terminal-based alternative
 
     remove:
@@ -133,7 +141,6 @@ modules:
           - net.cozic.joplin_desktop
           - org.kde.okular
           - io.mpv.Mpv
-          - io.github.ImEditor
           - com.github.huluti.Curtail
           - org.jousse.vincent.Pomodorolm
 
@@ -176,6 +183,9 @@ modules:
     system:
       enabled:
         - bluetooth.service
+    user:
+      enabled:
+        - mako.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
   - type: signing
