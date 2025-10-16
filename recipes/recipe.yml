@@ -188,6 +188,11 @@ modules:
   #   nvidia-driver: nvidia-open
   #   install: []
 
+  - type: gschema-overrides
+    include:
+      # zz1- prefix ensures our defaults win over Fedora’s.
+      - zz1-adwaita-dark.gschema.override
+
   - type: systemd
     system:
       enabled:
