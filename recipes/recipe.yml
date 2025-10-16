@@ -115,7 +115,8 @@ modules:
         - mako
 
         # File Explorer.
-        - nautilus
+        - nautilus # Nautilus is used as the default file picker by xdg-desktop-portal-gnome from version 47.0.
+        - pcmanfm # I just prefer PCManFM otherwise.
         # TODO: Consider yazi as a terminal-based alternative
 
     remove:
