@@ -132,7 +132,9 @@ modules:
         - bluez              # bluetoothd, bluetoothctl
         # - bluez-obexd        # OBEX file transfer (used by Blueman)
         # - blueman            # tray applet & pairing UI
-        - lxpolkit # PolicyKit agent for pairing / NM actions
+
+        # Actively maintained PolicyKit agent
+        - lxqt-policykit
 
     remove:
       packages:
