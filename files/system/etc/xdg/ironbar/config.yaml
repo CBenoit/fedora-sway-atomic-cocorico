@@ -1,5 +1,6 @@
 anchor_to_edges: true
 position: top
+layer: top
 height: 32
 
 start:
