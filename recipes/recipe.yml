@@ -106,6 +106,10 @@ modules:
         # Ensure we have the en_DK locale available.
         - glibc-langpack-en
 
+        # File Explorer
+        - pcmanfm
+        # TODO: Consider yazi as a terminal-based alternative
+
     remove:
       packages:
         # Remove Firefox in favour of the Zen browser flatpak.
@@ -126,6 +130,12 @@ modules:
           - com.github.tchx84.Flatseal
           - io.github.flattool.Warehouse
           - org.wireshark.Wireshark # The flatpak itself does not support capture, but it’s possible to pipe tshark. 
+          - net.cozic.joplin_desktop
+          - org.kde.okular
+          - io.mpv.Mpv
+          - io.github.ImEditor
+          - com.github.huluti.Curtail
+          - org.jousse.vincent.Pomodorolm
 
       # Also add Flathub user repo, but no user packages.
       - scope: user

@@ -8,7 +8,7 @@ start:
 
   - type: sys_info
     format:
-      - "| 　{cpu_percent}% | 　{memory_used}/{memory_total}G"
+      - " 　{cpu_percent}%  　{memory_used}/{memory_total}G "
     interval:
       memory: 30
       cpu: 5
