@@ -1,0 +1,2 @@
+#!/bin/bash
+curl +s wttr.in/Tokyo?format="%c%t\n" | sed 's/ //'

@@ -1,5 +1,5 @@
 [Default Applications]
-inode/directory=thunar.desktop
+inode/directory=pcmanfm.desktop
 
 image/jpeg=org.gnome.Loupe.desktop
 image/png=org.gnome.Loupe.desktop

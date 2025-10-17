@@ -1,0 +1,136 @@
+.container {
+  font-size: 16px;
+}
+
+.widget {
+  margin-top: 2px;
+  margin-right: 1px;
+  margin-left: 1px;
+  border-radius: 10px;
+  background: #1a1b26;
+}
+
+.background {
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0.9;
+}
+
+.sysinfo {
+  padding: 2px;
+}
+
+.sysinfo .item {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  padding: 0px 5px;
+  border-radius: 10px;
+  color: #ff9e64;
+  background: #1a12;
+}
+
+/* cpu */
+.sysinfo .item:nth-child(1) {
+  color: #ff9e64;
+}
+
+/* memory */
+.sysinfo .item:nth-child(2) {
+  color: #7dcfff;
+}
+
+.volume {
+  color: #9abdf5;
+}
+
+.popup-volume {
+  padding: 5px;
+  border-radius: 5px;
+  color: #c0caf5;
+  background-color: rgba(26, 27, 38, 0.8);
+  border: 2px solid #bb9af7;
+}
+
+.weather {
+  color: #ff9e64;
+}
+
+.clock {
+  color: #7dcfff;
+}
+
+.popup-clock {
+  font-weight: bolder;
+  background-color: rgba(26, 27, 38, 0.8);
+  border-radius: 10px;
+  border: 2px solid #bb9af7;
+}
+
+.popup-clock .calendar-clock {
+  color: #c0caf5;
+  font-size: 2em;
+}
+
+.popup-clock .calendar {
+  background-color: rgba(26, 27, 38, 0.8);
+  color: #c0caf5;
+  border-radius: 10px;
+}
+
+.popup-clock .calendar .header {
+  padding-top: 1em;
+  border-top: 1px solid #424242;
+  font-size: 1.5em;
+}
+
+.popup-clock .calendar:selected {
+  background-color: #3d59a1;
+}
+
+.focused {
+  padding: 3px;
+  color: #c3e88d;
+}
+
+.clipboard {
+  padding: 0px 10px;
+  color: #9abdf5;
+}
+
+.popup-clipboard {
+  padding: 5px;
+  border-radius: 5px;
+  color: #c0caf5;
+  background: #1a1b26;
+  background-color: rgba(26, 27, 38, 0.8);
+  border: 2px solid #bb9af7;
+}
+
+.script {
+  color: #9abdf5;
+}
+
+.script:hover {
+  color: #7dcfff;
+  background: #1a1b26;
+  border-radius: 10px;
+  min-width: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+tooltip.background {
+  background-color: rgba(00, 00, 00, 0.5);
+  font-size: 18px;
+  border-radius: 10px;
+  color: #fdfdfd;
+}
+
+tooltip * {
+  padding: 4px;
+  background-color: transparent;
+  color: white;
+}
+
+.host tooltip {
+  background-color: rgba(255, 00, 00, 0.5);
+}

@@ -1,24 +1,31 @@
 anchor_to_edges: true
-position: top
+position: bottom
 layer: top
-height: 32
+height: 30
 
 start:
+  - type: "script"
+    class: weather
+    cmd: "/etc/xdg/ironbar/scripts/weather"
+    mode: 'poll'
+    interval: 600000
+
   - type: "volume"
     format: "{icon} {percentage}%"
 
   - type: sys_info
     format:
-      - " 　{cpu_percent}%  　{memory_used}/{memory_total}G "
+      - "{cpu_percent}% "
+      - "{memory_percent}% "
     interval:
-      memory: 30
       cpu: 5
+      memory: 30
 
 center:
   - type: focused
     truncate:
       mode: end
-      max_length: 60
+      max_length: 50
 
 end:
   - type: clipboard
