@@ -187,6 +187,7 @@ modules:
     user:
       enabled:
         - mako.service
+        - fcitx5.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
   - type: signing
