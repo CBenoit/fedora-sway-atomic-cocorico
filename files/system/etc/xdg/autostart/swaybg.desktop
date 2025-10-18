@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Wallpaper (solid)
 Comment=Set a solid colour background at login
-Exec=/usr/bin/swaybg -c '#0f111a'
+Exec=/usr/bin/swaybg --image ~/.config/background --mode fit
 Type=Application
 X-GNOME-Autostart-enabled=true
 OnlyShowIn=GNOME;Unity;XFCE;LXQt;Niri;
