@@ -81,11 +81,14 @@ modules:
         # ironbar runtime libs
         - gtk4
         - gtk4-layer-shell
-        - nm-connection-editor # TODO: learn more about this.
+        - adwaita-icon-theme # Provides battery-level-*-symbolic, etc.
+        - hicolor-icon-theme # Fallback theme + index.theme (needed for app tray icons).
+        - librsvg2           # SVG loader for gdk-pixbuf (renders all those *-symbolic.svg)
 
         # Utilities for bar modules.
-        - playerctl       # MPRIS control for music module
-        - wl-clipboard    # Clipboard utility used by some ironbar modules
+        - playerctl    # MPRIS control for music module.
+        - wl-clipboard # Clipboard utility used by some ironbar modules.
+        - nm-connection-editor # TODO: learn more about this.
 
         # Audio stack (PipeWire and its session manager) for volume control.
         - pipewire
