@@ -1,7 +1,7 @@
 anchor_to_edges: true
 position: bottom
 layer: top
-height: 30
+height: 28
 
 start:
   - type: "script"
