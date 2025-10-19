@@ -1,20 +1,46 @@
-/* General */
+/** Colors **/
 
+/* Widget surfaces */
+@define-color widget-border hsl(135 14% 44%);
+@define-color widget-bg hsl(135 18% 64%);
+@define-color widget-bg-hover hsl(135 20% 60%);
+@define-color widget-inner-bg hsl(135 16% 70%);
+
+/* Theme helpers */
+/* general body text on green surfaces */
+@define-color text-default hsl(220 15% 18%);
+/* overlay version of widget-bg */
+@define-color widget-bg-80 hsl(135 18% 64% / 0.8);
+
+/* Metric / UI text */
+/* amber */
+@define-color text-cpu hsl(35 80% 18%);
+@define-color text-weather hsl(35 80% 18%);
+/* blue */
+@define-color text-memory hsl(210 70% 24%);
+/* teal */
+@define-color text-volume hsl(180 50% 18%);
+/* near-black */
+@define-color text-title-focused hsl(220 15% 18%);
+/* green accent */
+@define-color text-clipboard hsl(150 35% 20%);
+/* neutral */
+@define-color text-clock hsl(210 10% 24%);
+
+/** General **/
 .container {
   font-size: 16px;
 }
 
 .widget {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-right: 1px;
-  margin-left: 1px;
+  margin: 2px 1px;
   border-radius: 10px;
-  background: #1a1b26;
+  background: @widget-bg;
+  border: 1px solid @widget-border;
 }
 
 .widget:hover {
-  background: #1a2626;
+  background: @widget-bg-hover;
   border-radius: 3px;
   transition: all 0.3s ease-in-out;
 }
@@ -23,25 +49,9 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-tooltip.background {
-  background-color: rgba(00, 00, 00, 0.5);
-  font-size: 18px;
-  border-radius: 10px;
-  color: #fdfdfd;
-}
+/** Modules **/
 
-tooltip * {
-  padding: 4px;
-  background-color: transparent;
-  color: white;
-}
-
-.host tooltip {
-  background-color: rgba(255, 00, 00, 0.5);
-}
-
-/* sysinfo module */
-
+/* sysinfo */
 .sysinfo {
   padding: 2px;
 }
@@ -50,95 +60,91 @@ tooltip * {
   font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 18px;
   letter-spacing: 0.1px;
-  padding: 0px 5px;
+  padding: 0 5px;
   border-radius: 10px;
-  color: #ff9e64;
-  background: #1a12;
+  color: @text-default;
+  background: @widget-inner-bg;
 }
 
 /* cpu */
 .sysinfo .item:nth-child(1) {
-  color: #ff9e64;
+  color: @text-cpu;
 }
 
 /* memory */
 .sysinfo .item:nth-child(2) {
-  color: #7dcfff;
+  color: @text-memory;
 }
 
-/* volume module */
-
+/* volume */
 .volume {
-  color: #9abdf5;
+  color: @text-volume;
 }
 
 .popup-volume {
   padding: 5px;
   border-radius: 5px;
-  color: #c0caf5;
-  background-color: rgba(26, 27, 38, 0.8);
-  border: 2px solid #bb9af7;
+  color: @text-default;
+  background-color: @widget-bg-80;
+  border: 2px solid @widget-border;
 }
 
-/* weather script module */
-
+/* weather */
 .weather {
-  color: #ff9e64;
+  color: @text-weather;
 }
 
-/* clock module */
-
+/* clock */
 .clock {
-  color: #7dcfff;
+  color: @text-clock;
 }
 
 .popup-clock {
   font-weight: bolder;
-  background-color: rgba(26, 27, 38, 0.8);
+  background-color: @widget-bg-80;
   border-radius: 10px;
-  border: 2px solid #bb9af7;
+  border: 2px solid @widget-border;
+  color: @text-default;
 }
 
 .popup-clock .calendar-clock {
-  color: #c0caf5;
+  color: @text-clock;
   font-size: 2em;
 }
 
 .popup-clock .calendar {
-  background-color: rgba(26, 27, 38, 0.8);
-  color: #c0caf5;
+  background-color: @widget-bg-80;
+  color: @text-default;
   border-radius: 10px;
 }
 
 .popup-clock .calendar .header {
   padding-top: 1em;
-  border-top: 1px solid #424242;
+  border-top: 1px solid @widget-border;
   font-size: 1.5em;
 }
 
 .popup-clock .calendar:selected {
-  background-color: #3d59a1;
+  background-color: @widget-bg-hover;
 }
 
-/* focused module */
-
+/* focused app title */
 .focused {
   padding: 3px;
-  color: #c3e88d;
+  color: @text-title-focused;
 }
 
-/* clipboard module */
-
+/* clipboard */
 .clipboard {
-  padding: 0px 10px;
-  color: #9abdf5;
+  padding: 0 10px;
+  color: @text-clipboard;
 }
 
 .popup-clipboard {
   padding: 5px;
   border-radius: 5px;
-  color: #c0caf5;
-  background: #1a1b26;
-  background-color: rgba(26, 27, 38, 0.8);
-  border: 2px solid #bb9af7;
+  color: @text-default;
+  background: @widget-bg;
+  background-color: @widget-bg-80;
+  border: 2px solid @widget-border;
 }
