@@ -165,9 +165,9 @@ modules:
 
   # (Optional but helpful) refresh icon/loader caches at build time
   - type: containerfile
-    content: |
-      RUN gdk-pixbuf-query-loaders --update-cache || true
-      RUN gtk4-update-icon-cache /usr/share/icons/Adwaita || true
+    snippets:
+      - RUN gdk-pixbuf-query-loaders --update-cache
+      - RUN gtk4-update-icon-cache /usr/share/icons/Adwaita
 
   # Provide ujust commands for provisioning dev container(s).
   - type: justfiles
