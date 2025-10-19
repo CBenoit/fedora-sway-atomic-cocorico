@@ -83,7 +83,8 @@ modules:
         - gtk4-layer-shell
         - adwaita-icon-theme # Provides battery-level-*-symbolic, etc.
         - hicolor-icon-theme # Fallback theme + index.theme (needed for app tray icons).
-        - librsvg2           # SVG loader for gdk-pixbuf (renders all those *-symbolic.svg)
+        - librsvg2           # SVG loader for gdk-pixbuf (renders all those *-symbolic.svg).
+        - upower # Avoid 0% or broken battery on VMs.
 
         # Utilities for bar modules.
         - playerctl    # MPRIS control for music module.
@@ -161,6 +162,12 @@ modules:
         - JetBrainsMono
         - FiraCode
         - NerdFontsSymbolsOnly
+
+  # (Optional but helpful) refresh icon/loader caches at build time
+  - type: containerfile
+    content: |
+      RUN gdk-pixbuf-query-loaders --update-cache || true
+      RUN gtk4-update-icon-cache /usr/share/icons/Adwaita || true
 
   # Provide ujust commands for provisioning dev container(s).
   - type: justfiles
