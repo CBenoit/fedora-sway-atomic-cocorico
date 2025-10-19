@@ -41,7 +41,6 @@
 
 .widget:hover {
   background: @widget-bg-hover;
-  border-radius: 3px;
   transition: all 0.3s ease-in-out;
 }
 
