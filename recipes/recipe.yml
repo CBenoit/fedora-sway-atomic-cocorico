@@ -81,10 +81,14 @@ modules:
         # ironbar runtime libs
         - gtk4
         - gtk4-layer-shell
-        - adwaita-icon-theme # Provides battery-level-*-symbolic, etc.
-        - hicolor-icon-theme # Fallback theme + index.theme (needed for app tray icons).
-        - librsvg2           # SVG loader for gdk-pixbuf (renders all those *-symbolic.svg).
-        - upower # Avoid 0% or broken battery on VMs.
+        # Icon theming & loaders for symbolic/tray icons
+        - adwaita-icon-theme
+        - hicolor-icon-theme
+        - gdk-pixbuf2
+        - gdk-pixbuf2-modules
+        - librsvg2
+        # Battery info (optional but helpful in VMs)
+        - upower
 
         # Utilities for bar modules.
         - playerctl    # MPRIS control for music module.
@@ -162,12 +166,6 @@ modules:
         - JetBrainsMono
         - FiraCode
         - NerdFontsSymbolsOnly
-
-  # (Optional but helpful) refresh icon/loader caches at build time
-  - type: containerfile
-    snippets:
-      - RUN gdk-pixbuf-query-loaders --update-cache
-      - RUN gtk4-update-icon-cache /usr/share/icons/Adwaita
 
   # Provide ujust commands for provisioning dev container(s).
   - type: justfiles
