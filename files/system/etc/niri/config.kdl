@@ -15,12 +15,6 @@ prefer-no-csd
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/Pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
-spawn-at-startup "ironbar"
-
-environment {
-    IRONBAR_CONFIG "/etc/xdg/ironbar/config.yaml"
-}
-
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
