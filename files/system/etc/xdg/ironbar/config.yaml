@@ -142,7 +142,7 @@ end:
 
   # Date and time in ISO format (YYYY/MM/DD HH:mm).
   - type: clock
-    format: "%Y/%m/%d %H:%M"
+    format: "%m月%d日 %H:%M"
     locale: "en_DK.UTF-8" # ISO-style.
 
   # System tray.
