@@ -93,31 +93,30 @@
   color: @text-weather;
 }
 
-.popup-weather #header {
-  font-size: 1.8em;
+.table-header {
+  font-size: 2.0em;
   padding-bottom: 0.4em;
   margin-bottom: 0.6em;
-  border-bottom: 1px solid @widget-border;
+  border-bottom: 2px solid @widget-border;
 }
 
-.popup-weather .weather-date {
-  font-size: 1.5em;
+.head-column {
   padding-right: 1em;
 }
 
-.popup-weather .weather-avg {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+.value-column {
+  margin-left: 1em;
+  border-left: 1px solid @widget-border;
 }
 
-/* 
- this is a hack to align the different font sizes on left/right 
- you may need to adjust for different fonts
-*/
-.popup-weather #temps label {
-  padding-top: 0.2em;
-  margin-bottom: 0.7em;
+.column-header {
+  font-size: 1.8em;
 }
+
+.column-value {
+  font-size: 1.5em;
+}
+
 
 /* clock */
 .clock {

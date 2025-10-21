@@ -12,67 +12,105 @@ start:
         on_click: popup:toggle
     popup:
       - type: box
+        class: table
         orientation: vertical
         widgets:
           - type: label
-            name: header
+            class: table-header
             label: Forecast
           - type: box
             widgets:
               - type: box
-                name: dates
+                class: head-column
                 orientation: vertical
                 widgets:
                   - type: label
-                    class: weather-date
+                    class: column-header
+                    label: '—'
+                  - type: label
+                    class: column-value
                     label: '#weather_date_0'
                   - type: label
-                    class: weather-date
+                    class: column-value
                     label: '#weather_date_1'
               - type: box
-                name: temps
+                class: value-column
                 orientation: vertical
                 widgets:
-                - type: box
-                  widgets:
-                    - type: label
-                      class: weather-09
-                      label: '🌄 #weather_09_0'
-                    - type: label
-                      class: weather-15
-                      label: '🌞 #weather_15_0'
-                    - type: label
-                      class: weather-21
-                      label: '🌜 #weather_21_0'
-                    - type: label
-                      class: weather-high
-                      label: ' #weather_high_0'
-                    - type: label
-                      class: weather-avg
-                      label: ' #weather_avg_0'
-                    - type: label
-                      class: weather-low
-                      label: ' #weather_low_0'
-                - type: box
-                  widgets:
-                    - type: label
-                      class: weather-09
-                      label: '🌄 #weather_09_1'
-                    - type: label
-                      class: weather-15
-                      label: '🌞 #weather_15_1'
-                    - type: label
-                      class: weather-21
-                      label: '🌜 #weather_21_1'
-                    - type: label
-                      class: weather-high
-                      label: ' #weather_high_1'
-                    - type: label
-                      class: weather-avg
-                      label: ' #weather_avg_1'
-                    - type: label
-                      class: weather-low
-                      label: ' #weather_low_1'
+                  - type: label
+                    class: column-header
+                    label: '🌄'
+                  - type: label
+                    class: column-value
+                    label: '#weather_09_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_09_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: '🌞'
+                  - type: label
+                    class: column-value
+                    label: '#weather_15_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_15_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: '🌜'
+                  - type: label
+                    class: column-value
+                    label: '#weather_21_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_21_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_high_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_high_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_avg_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_avg_1'
+              - type: box
+                class: value-column
+                orientation: vertical
+                widgets:
+                  - type: label
+                    class: column-header
+                    label: ''
+                  - type: label
+                    class: column-value
+                    label: '#weather_low_0'
+                  - type: label
+                    class: column-value
+                    label: '#weather_low_1'
 
   - type: "volume"
     format: "{icon} {percentage}%"
