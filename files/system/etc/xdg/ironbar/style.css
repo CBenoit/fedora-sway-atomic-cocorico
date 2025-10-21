@@ -11,7 +11,7 @@
 
 /* Widget surfaces */
 @define-color widget-border hsl(88, 54%, 76%);
-@define-color widget-bg hsl(84, 70%, 88%);
+@define-color widget-bg hsl(85, 61%, 94%);
 @define-color widget-bg-hover hsl(74, 60%, 81%);
 @define-color widget-inner-bg hsl(84, 74%, 79%);
 
@@ -19,7 +19,7 @@
 /* general body text on green surfaces */
 @define-color text-default hsl(220 15% 18%);
 /* overlay version of widget-bg */
-@define-color widget-bg-80 hsl(84, 70%, 88% / 0.8);
+@define-color widget-bg-80 hsl(85, 61%, 94% / 0.8);
 
 /* Metric / UI text */
 /* amber */
@@ -41,12 +41,16 @@
   font-size: 16px;
 }
 
-.widget,
-.widget button {
+.widget {
   margin: 2px 1px;
   border-radius: 10px;
   background: @widget-bg;
   border: 1px solid @widget-border;
+}
+
+.widget button {
+  border-radius: 10px;
+  background: @widget-bg;
 }
 
 .volume:hover,
@@ -111,17 +115,20 @@
 
 .table-header {
   font-size: 2.0em;
+  font-weight: bolder;
   padding-bottom: 0.4em;
   margin-bottom: 0.6em;
   border-bottom: 2px solid @widget-border;
 }
 
 .head-column {
-  padding-right: 1em;
+  font-weight: bolder;
+  padding: 0.5em;
+  margin-right: 0.5em;
 }
 
 .value-column {
-  margin-left: 1em;
+  padding: 0.5em;
   border-left: 1px solid @widget-border;
 }
 
@@ -133,9 +140,9 @@
   font-size: 1.5em;
 }
 
-
 /* clock */
 .clock {
+  font-weight: bolder;
   color: @text-clock;
 }
 

@@ -26,7 +26,7 @@ start:
                 widgets:
                   - type: label
                     class: column-header
-                    label: '—'
+                    label: ''
                   - type: label
                     class: column-value
                     label: '#weather_date_0'
