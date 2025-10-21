@@ -1,16 +1,25 @@
 /** Colors **/
 
+/* Natural Green Wave Color Palette
+ * hsl(85, 61%, 94%)
+ * hsl(84, 70%, 88%)
+ * hsl(84, 74%, 79%)
+ * hsl(88, 54%, 76%)
+ * hsl(74, 60%, 81%)
+ * hsl(74, 79%, 89%)
+ */
+
 /* Widget surfaces */
-@define-color widget-border hsl(135 14% 44%);
-@define-color widget-bg hsl(135 18% 64%);
-@define-color widget-bg-hover hsl(135 20% 60%);
-@define-color widget-inner-bg hsl(135 16% 70%);
+@define-color widget-border hsl(88, 54%, 76%);
+@define-color widget-bg hsl(84, 70%, 88%);
+@define-color widget-bg-hover hsl(74, 60%, 81%);
+@define-color widget-inner-bg hsl(84, 74%, 79%);
 
 /* Theme helpers */
 /* general body text on green surfaces */
 @define-color text-default hsl(220 15% 18%);
 /* overlay version of widget-bg */
-@define-color widget-bg-80 hsl(135 18% 64% / 0.8);
+@define-color widget-bg-80 hsl(84, 70%, 88% / 0.8);
 
 /* Metric / UI text */
 /* amber */
