@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ironbar_weather script (oneshot)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ironbar_weather
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
