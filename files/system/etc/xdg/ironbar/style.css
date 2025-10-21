@@ -12,19 +12,15 @@
 
 /* Widget surfaces */
 @define-color widget-border hsl(85 34% 28%);
-/* subtle, visible edge on dark */
-@define-color widget-bg hsl(85 22% 13%);
-/* base widget surface */
-@define-color widget-bg-hover hsl(85 26% 19%);
-/* hover/elevated tone */
-@define-color widget-inner-bg hsl(85 24% 16%);
-/* inner sections / inputs */
+@define-color widget-bg hsl(85 24% 16%);
+@define-color widget-bg-hover hsl(85 30% 23%);
+@define-color widget-inner-bg hsl(85 26% 19%);
 
 /* Theme helpers */
 /* general body text on green surfaces */
 @define-color text-default hsl(210 15% 88%);
 /* overlay version of widget-bg */
-@define-color widget-bg-80 hsl(85 22% 13% / 0.8);
+@define-color widget-bg-80 hsl(85 24% 16% / 0.8);
 
 /* Metric / UI text (tuned for dark backgrounds) */
 /* amber */
@@ -117,6 +113,13 @@
 /* weather */
 .weather {
   color: @text-weather;
+}
+
+.table {
+  background-color: @widget-bg-80;
+  border-radius: 10px;
+  border: 2px solid @widget-border;
+  color: @text-default;
 }
 
 .table-header {
