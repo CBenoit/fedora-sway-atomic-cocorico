@@ -1,4 +1,4 @@
-#!/usr/bin/env nu
+#!/usr/bin/env nu -n
 # Open-Meteo → ironbar (minimal)
 # - Bar:   #weather_current = "{icon} {+/-}{temp}°C" (from current_weather)
 # - Popup: two rows (i=0 today, i=1 tomorrow)
