@@ -3,7 +3,7 @@ Description=Run ironbar_weather script (oneshot)
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/nu -n /usr/bin/ironbar_weather
+ExecStart=/usr/bin/ironbar_weather
 ProtectSystem=strict
-ProtectHome=true
+ProtectHome=read-only
 PrivateTmp=true
