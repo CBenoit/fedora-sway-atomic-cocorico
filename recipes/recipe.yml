@@ -204,6 +204,7 @@ modules:
         - swaybg.service
         - swayidle.service
         - ironbar.service
+        - ironbar_weather.timer
         - wlsunset.service
 
   # This sets up the proper policy & signing files for signed images to work fully.
