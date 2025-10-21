@@ -4,7 +4,7 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/local/bin/ironbar
+ExecStart=/usr/bin/ironbar
 Restart=on-failure
 
 [Install]
