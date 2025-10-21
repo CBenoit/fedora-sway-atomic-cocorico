@@ -32,14 +32,21 @@
   font-size: 16px;
 }
 
-.widget {
+.widget,
+.widget button {
   margin: 2px 1px;
   border-radius: 10px;
   background: @widget-bg;
   border: 1px solid @widget-border;
 }
 
-.widget:hover {
+.volume:hover,
+.clipboard:hover,
+.network_manager:hover,
+.bluetooth:hover,
+.clock:hover,
+.battery:hover,
+.widget button:hover {
   background: @widget-bg-hover;
   transition: all 0.3s ease-in-out;
 }
