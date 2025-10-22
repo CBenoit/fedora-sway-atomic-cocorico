@@ -58,6 +58,11 @@ input {
     warp-mouse-to-focus
 }
 
+environment {
+    // ISO-style for date and time.
+    LC_TIME "en_DK.UTF-8"
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Layout
