@@ -121,7 +121,7 @@ modules:
         - gnome-keyring # Implements the Secret portal, required for certain apps to work.
 
         # Notifications.
-        - mako
+        - SwayNotificationCenter # swaync daemon + swaync-client
 
         # File Explorer.
         - nautilus # Nautilus is used as the default file picker by xdg-desktop-portal-gnome from version 47.0.
@@ -199,7 +199,7 @@ modules:
         - bluetooth.service
     user:
       enabled:
-        - mako.service
+        - swaync.service
         - fcitx5.service
         - swaybg.service
         - swayidle.service
