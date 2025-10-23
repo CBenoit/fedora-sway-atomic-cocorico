@@ -561,11 +561,11 @@ binds {
     Mod+Shift+J { power-off-monitors; }
 
     // Open notifications panel.
-    bind Mod+N { spawn "swaync-client" "-t" "-sw"; }
+    Mod+N { spawn "swaync-client" "-t" "-sw"; }
     // Toggle do not disturb mode.
-    bind Mod+Shift+N { spawn "swaync-client" "-d"; }
+    Mod+Shift+N { spawn "swaync-client" "-d"; }
     // Clear all notifications.
-    bind Mod+Shift+M { spawn "swaync-client" "-C"; }
+    Mod+Shift+M { spawn "swaync-client" "-C"; }
 }
 
 cursor {
