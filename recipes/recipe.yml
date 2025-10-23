@@ -20,6 +20,14 @@ modules:
       - source: system
         destination: / # Copies files/system/* (* means everything inside it) into image's root folder /.
 
+  - type: script
+    snippets:
+      - mkdir -p /etc/niri/
+      - curl -f https://raw.githubusercontent.com/CBenoit/dotfiles/refs/heads/master/home/dot_config/niri/config.kdl -o /etc/niri/config.kdl
+      - mkdir -p /etc/skel/.config/ironbar/
+      - curl -f https://raw.githubusercontent.com/CBenoit/dotfiles/refs/heads/master/home/dot_config/ironbar/config.yaml -o /etc/skel/.config/ironbar/config.yaml
+      - curl -f https://raw.githubusercontent.com/CBenoit/dotfiles/refs/heads/master/home/dot_config/ironbar/style.css -o /etc/skel/.config/ironbar/style.css
+
   # Retrieve the ironbar binary from the associated build stage.
   - type: copy
     from: build-ironbar
@@ -178,8 +186,8 @@ modules:
   # Disable init to avoid interfering with host files during build.
   # Dotfiles live at the referenced repository.
   - type: chezmoi
-    disable-init: true
-    all-users: false
+    disable-init: false
+    all-users: true
     repository: "https://github.com/CBenoit/dotfiles"
     file-conflict-policy: skip
 
