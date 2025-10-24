@@ -11,6 +11,8 @@ description: "Niri Atomic + minimal host + Toolbox dev stack (Rust/.NET/Node) wi
 base-image: ghcr.io/ublue-os/base-main
 image-version: "42"
 
+# QUESTION: I’m not sure the xdg/autostart stuff is doing anything. Need to double check.
+
 # The module configuration describes what is done to the base image.
 # Modules are executed in order.
 modules:
@@ -40,6 +42,11 @@ modules:
     src: /out/bin/broot
     dest: /usr/bin/
 
+  - type: copy
+    from: ast-grep
+    src: /out/bin/ast-grep
+    dest: /usr/bin/
+
   # Install packages and remove unwanted ones via DNF.
   - type: dnf
     repos:
@@ -48,12 +55,14 @@ modules:
 
     install:
       packages:
-        # Common CLI utilities.
+        # Useful CLI utilities.
         - helix           # TUI editor on the host
         - nu              # Nushell
         - starship        # Shell prompt
         - zoxide          # Smarter cd
         - git
+        - git-delta
+        - diffstatic
         - ripgrep
         - fd-find
         - wireshark-cli   # tshark + dumpcap
@@ -61,6 +70,13 @@ modules:
         - nmap
         - skim
         - upower
+        - diskonaut
+        - task # Taskwarrior
+        - timew # Timewarrior
+        - rmlint
+
+        # SUID sandbox program for untrusted applications.
+        - firejail
 
         # Lightweight Wayland terminal.
         - foot
@@ -195,9 +211,6 @@ modules:
     repository: "https://github.com/CBenoit/dotfiles"
     file-conflict-policy: skip
 
-  # TODO: Use soar in chezmoi linux auto-run script to install extra local packages.
-  - type: soar
-
   # (Optional) If you need NVIDIA/other kernel modules later:
   # - type: akmods
   #   nvidia-driver: nvidia-open
@@ -267,3 +280,13 @@ stages:
           - unzip broot.zip -d broot
           - mkdir -p /out/bin
           - mv broot/x86_64-unknown-linux-gnu/broot /out/bin/broot
+
+  - name: ast-grep
+    from: ghcr.io/ublue-os/base-main:42
+    modules:
+      - type: script
+        snippets:
+          - curl -fL https://github.com/ast-grep/ast-grep/releases/download/0.39.6/app-x86_64-unknown-linux-gnu.zip -o app.zip
+          - unzip app.zip -d app
+          - mkdir -p /out/bin
+          - mv app/ast-grep /out/bin/ast-grep
