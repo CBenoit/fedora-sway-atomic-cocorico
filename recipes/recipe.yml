@@ -30,8 +30,14 @@ modules:
 
   # Retrieve the ironbar binary from the associated build stage.
   - type: copy
-    from: build-ironbar
+    from: ironbar
     src: /out/bin/ironbar
+    dest: /usr/bin/
+
+  # Retrieve the broot binary from the associated build stage.
+  - type: copy
+    from: broot
+    src: /out/bin/broot
     dest: /usr/bin/
 
   # Install packages and remove unwanted ones via DNF.
@@ -53,6 +59,8 @@ modules:
         - wireshark-cli   # tshark + dumpcap
         - tcpdump
         - nmap
+        - skim
+        - upower
 
         # Lightweight Wayland terminal.
         - foot
@@ -87,17 +95,13 @@ modules:
         - fcitx5-mozc     # Japanese input engine for Mozc
         - fcitx5-configtool
 
-        # ironbar runtime libs
+        # Ironbar runtime libs.
         - gtk4
         - gtk4-layer-shell
-        # Icon theming & loaders for symbolic/tray icons
+
+        # Icon theming & loaders for symbolic/tray icons.
         - adwaita-icon-theme
         - hicolor-icon-theme
-        - gdk-pixbuf2
-        - gdk-pixbuf2-modules
-        - librsvg2
-        # Battery info (optional but helpful in VMs)
-        - upower
 
         # Utilities for bar modules.
         - playerctl    # MPRIS control for music module.
@@ -191,6 +195,9 @@ modules:
     repository: "https://github.com/CBenoit/dotfiles"
     file-conflict-policy: skip
 
+  # TODO: Use soar in chezmoi linux auto-run script to install extra local packages.
+  - type: soar
+
   # (Optional) If you need NVIDIA/other kernel modules later:
   # - type: akmods
   #   nvidia-driver: nvidia-open
@@ -220,7 +227,7 @@ modules:
 
 stages:
   # TODO: consider downloading from the GitHub release: https://github.com/JakeStanger/ironbar/releases/tag/v0.17.1
-  - name: build-ironbar
+  - name: ironbar
     # Use Fedora 42 image to ensure we link against the correct libraries versions and ABIs (important for GTK apps).
     # Build on Fedora, run on Fedora.
     from: ghcr.io/ublue-os/base-main:42
@@ -247,6 +254,16 @@ stages:
       - type: script
         snippets:
           # Build straight from crates.io.
-          - cargo install --locked ironbar --git https://github.com/JakeStanger/ironbar --rev 95612269b73cf9e2e2dd849d1667258ee1ee0d8d --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri,script,custom
+          - cargo install --locked ironbar --git https://github.com/JakeStanger/ironbar --rev 68e1f8adc6b4edb78c29d62383999d67ac544576 --root /out --no-default-features --features http,config+yaml,cli,battery,bluetooth,clipboard,clock,focused,music+mpris,network_manager,notifications,sys_info,tray,volume,workspaces+niri,script,custom
           # Probably not required, but strip the debug symbols.
           - strip /out/bin/ironbar
+
+  - name: broot
+    from: ghcr.io/ublue-os/base-main:42
+    modules:
+      - type: script
+        snippets:
+          - curl -fL https://github.com/Canop/broot/releases/download/v1.51.0/broot_1.51.0.zip -o broot.zip
+          - unzip broot.zip -d broot
+          - mkdir -p /out/bin
+          - mv broot/x86_64-unknown-linux-gnu/broot /out/bin/broot
