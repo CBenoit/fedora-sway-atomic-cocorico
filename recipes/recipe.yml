@@ -52,6 +52,7 @@ modules:
     repos:
       copr:
         - atim/starship
+        - atim/nushell # Latest versions of nushell.
 
     install:
       packages:
@@ -74,6 +75,9 @@ modules:
         - task # Taskwarrior
         - timew # Timewarrior
         - rmlint
+
+        # Dialogs for scripts (e.g.: used in ujust)
+        - gum
 
         # SUID sandbox program for untrusted applications.
         - firejail
