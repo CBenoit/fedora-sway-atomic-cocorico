@@ -47,6 +47,11 @@ modules:
     src: /out/bin/ast-grep
     dest: /usr/bin/
 
+  - type: copy
+    from: carapace
+    src: /out/bin/carapace
+    dest: /usr/bin/
+
   # Install packages and remove unwanted ones via DNF.
   - type: dnf
     repos:
@@ -75,6 +80,7 @@ modules:
         - task # Taskwarrior
         - timew # Timewarrior
         - rmlint
+        - rsync
 
         # Dialogs for scripts (e.g.: used in ujust)
         - gum
@@ -283,7 +289,7 @@ stages:
           - curl -fL https://github.com/Canop/broot/releases/download/v1.51.0/broot_1.51.0.zip -o broot.zip
           - unzip broot.zip -d broot
           - mkdir -p /out/bin
-          - mv broot/x86_64-unknown-linux-gnu/broot /out/bin/broot
+          - mv ./broot/x86_64-unknown-linux-gnu/broot /out/bin/broot
 
   - name: ast-grep
     from: ghcr.io/ublue-os/base-main:42
@@ -293,4 +299,15 @@ stages:
           - curl -fL https://github.com/ast-grep/ast-grep/releases/download/0.39.6/app-x86_64-unknown-linux-gnu.zip -o app.zip
           - unzip app.zip -d app
           - mkdir -p /out/bin
-          - mv app/ast-grep /out/bin/ast-grep
+          - mv ./app/ast-grep /out/bin/ast-grep
+
+  - name: carapace
+    from: ghcr.io/ublue-os/base-main:42
+    modules:
+      - type: script
+        snippets:
+          - curl -fL https://github.com/carapace-sh/carapace-bin/releases/download/v1.5.3/carapace-bin_1.5.3_linux_amd64.tar.gz -o carapace.tar.gz
+          - mkdir carapace
+          - tar xf carapace.tar.gz --directory carapace
+          - mkdir -p /out/bin
+          - mv ./carapace/carapace /out/bin/carapace
