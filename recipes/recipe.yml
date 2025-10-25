@@ -63,7 +63,7 @@ modules:
         - zoxide          # Smarter cd
         - git
         - git-delta
-        - diffstatic
+        - difftastic
         - ripgrep
         - fd-find
         - wireshark-cli   # tshark + dumpcap
